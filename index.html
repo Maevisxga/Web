@@ -15,11 +15,28 @@
             margin: 0 auto;
             display: block;
         }
+        .control-buttons {
+            margin-top: 10px;
+        }
+        .arrow-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
     </style>
 </head>
 <body>
     <h1>Juego de Romper Bloques</h1>
     <canvas id="canvas" width="480" height="320"></canvas>
+    <div class="control-buttons">
+        <button class="arrow-button" id="leftButton"><img src="https://img.icons8.com/ios-filled/50/000000/arrow-left.png"/></button>
+        <button class="arrow-button" id="rightButton"><img src="https://img.icons8.com/ios-filled/50/000000/arrow-right.png"/></button>
+    </div>
 
     <script>
         const canvas = document.getElementById("canvas");
@@ -61,6 +78,8 @@
         // Event listeners para el control de la paleta
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
+        document.getElementById("leftButton").addEventListener("click", () => { leftPressed = true; });
+        document.getElementById("rightButton").addEventListener("click", () => { rightPressed = true; });
 
         function keyDownHandler(e) {
             if (e.key === "Right" || e.key === "ArrowRight") {
