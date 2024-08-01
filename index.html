@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Daniel</title>
+    <title>Adivina el número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .guess-input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hola Daniel</h1>
+    <h1>Adivina el número (entre 1 y 100)</h1>
+    <p>Introduce un número y presiona 'Adivinar':</p>
+    <input type="number" id="guess" class="guess-input" min="1" max="100" required>
+    <button onclick="checkGuess()">Adivinar</button>
+    <p class="result" id="result"></p>
+
+    <script>
+        // Generar un número aleatorio entre 1 y 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        console.log("Número aleatorio:", randomNumber);
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess').value);
+            const result = document.getElementById('result');
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                result.textContent = "Por favor, introduce un número válido entre 1 y 100.";
+            } else if (guess === randomNumber) {
+                result.textContent = `¡Felicidades! Has adivinado el número ${randomNumber}.`;
+            } else if (guess < randomNumber) {
+                result.textContent = `El número es mayor que ${guess}. Intenta de nuevo.`;
+            } else if (guess > randomNumber) {
+                result.textContent = `El número es menor que ${guess}. Intenta de nuevo.`;
+            }
+        }
+    </script>
 </body>
 </html>
